@@ -43,7 +43,7 @@ def favorite_color(colors: dict[str, str]) -> str:
 
 
 def bin_len(words: list[str]) -> dict[int, set[str]]:
-    """ "Bins a list of strings into a dictionary."""
+    """Bins a list of strings into a dictionary."""
     bins: dict[int, set[str]] = {}
     for word in words:
         length: int = len(word)
