@@ -34,14 +34,24 @@ class River:
         for bears in self.bears:
             if bears.age <= 5:
                 alive_bears.append(bears)
+        self.bears = alive_bears
         return None
 
     def bears_eating(self) -> None:
-        """Checks to see if bears are eating."""
+        """Removes fish from river if bears eat."""
+        for bear in self.bears:
+            if len(self.fish) >= 5:
+                self.remove_fish(3)
+                bear.eat(3)
         return None
 
     def check_hunger(self) -> None:
-        """Checks to see if bears are hungry."""
+        """Checks to see if bears are dying of hunger."""
+        alive_bears: list[Bear] = []
+        for bear in self.bears:
+            if bear.hunger_score >= 0:
+                alive_bears.append(bear)
+            self.bears = alive_bears
         return None
 
     def repopulate_fish(self) -> None:
@@ -85,7 +95,7 @@ class River:
         self.check_ages()
         # Simulate Fish repopulation
         self.repopulate_fish()
-        # Simulate Bear repopulation
+        # Simulate Bearrepopulation
         self.repopulate_bears()
         # Visualize River
         self.view_river()
@@ -94,4 +104,12 @@ class River:
         """View of the river at a given week."""
         while self.day < 7:
             self.one_river_day()
+        return None
+
+    def remove_fish(self, amount: int) -> None:
+        """Removes a given amount of fish from the river."""
+        count = 0
+        while count < amount and self.fish:
+            self.fish.pop(0)
+            count += 1
         return None

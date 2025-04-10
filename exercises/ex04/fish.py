@@ -10,7 +10,7 @@ class Fish:
         self.age = 0
         return None
 
-    def one_day(self):
+    def one_day(self) -> None:
         """Increases age of fish by one day."""
         self.age += 1
         return None
