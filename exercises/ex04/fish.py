@@ -4,9 +4,12 @@ __author__: str = "730458530"
 
 
 class Fish:
+    """Fish class creation."""
+
     age: int
 
     def __init__(self):
+        """Initializing fish class values."""
         self.age = 0
         return None
 
