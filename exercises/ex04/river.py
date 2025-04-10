@@ -1,11 +1,15 @@
 """File to define River class."""
 
-from exercises.EX04.fish import Fish
-from exercises.EX04.bear import Bear
+from exercises.ex04.fish import Fish
+from exercises.ex04.bear import Bear
+
 
 class River:
-    
-    def __init__(self, num_fish: int, num_bears:int):
+    day: int
+    bears: list  # giving an error...
+    fish: list  # giving an error...
+
+    def __init__(self, num_fish: int, num_bears: int):
         """New River with num_fish Fish and num_bears Bears"""
         self.day: int = 0
         self.fish: list[Fish] = []
@@ -17,23 +21,44 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
+        alive_fish: list[Fish] = []
+        for fish in self.fish:
+            if fish.age <= 3:
+                alive_fish.append(fish)
+        self.fish = alive_fish
+
+        alive_bears: list[Bear] = []
+        for bears in self.bears:
+            if bears.age <= 5:
+                alive_bears.append(bears)
         return None
 
     def bears_eating(self):
         return None
-    
+
     def check_hunger(self):
         return None
-        
+
     def repopulate_fish(self):
+        offspring = (len(self.fish) // 2) * 4
+        while offspring > 0:
+            self.fish.append(Fish())
+            offspring -= 1
         return None
-    
+
     def repopulate_bears(self):
+        offspring = len(self.bears) // 2
+        while offspring > 0:
+            self.bears.append(Bear())
+            offspring -= 1
         return None
-    
+
     def view_river(self):
+        print(f"~~~ Day {self.day}: ~~~")
+        print(f"Fish population: {len(self.fish)}")
+        print(f"Bear population: {len(self.bears)}")
         return None
-            
+
     def one_river_day(self):
         """Simulate one day of life in the river"""
         # Increase day by 1
@@ -56,4 +81,8 @@ class River:
         self.repopulate_bears()
         # Visualize River
         self.view_river()
-            
+
+    def one_river_week(self):
+        while self.day < 7:
+            self.one_river_day()
+        return None
