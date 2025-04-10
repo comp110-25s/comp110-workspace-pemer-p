@@ -1,5 +1,7 @@
 """File to define Bear class."""
 
+__author__: str = "730458530"
+
 
 class Bear:
     age: int
@@ -11,5 +13,6 @@ class Bear:
         return None
 
     def one_day(self):
+        """Increases age of bear by one day."""
         self.age += 1
         return None
